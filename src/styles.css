@@ -59,29 +59,37 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-ylyto-yellow: var(--ylyto-yellow);
+  --color-ylyto-pink: var(--ylyto-pink);
+  --color-ylyto-blue: var(--ylyto-blue);
+  --color-ylyto-purple: var(--ylyto-purple);
+  --color-ylyto-cream: var(--ylyto-cream);
+  --font-display: "Fredoka", "Baloo 2", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+  --font-arabic: "Cairo", "Tajawal", system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.995 0.008 90);
+  --foreground: oklch(0.25 0.04 280);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.25 0.04 280);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.25 0.04 280);
+  --primary: oklch(0.72 0.18 350);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.06 90);
+  --secondary-foreground: oklch(0.3 0.05 280);
+  --muted: oklch(0.97 0.02 90);
+  --muted-foreground: oklch(0.5 0.04 280);
+  --accent: oklch(0.92 0.08 220);
+  --accent-foreground: oklch(0.3 0.05 280);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.92 0.03 320);
+  --input: oklch(0.94 0.03 320);
+  --ring: oklch(0.72 0.18 350);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -95,6 +103,16 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Ylyto brand */
+  --ylyto-yellow: oklch(0.83 0.16 85);
+  --ylyto-pink: oklch(0.75 0.18 350);
+  --ylyto-blue: oklch(0.72 0.16 235);
+  --ylyto-purple: oklch(0.55 0.18 305);
+  --ylyto-cream: oklch(0.985 0.02 90);
+
+  --shadow-bubble: 0 6px 0 rgba(0,0,0,0.12), 0 10px 30px -10px rgba(0,0,0,0.18);
+  --shadow-soft: 0 8px 30px -10px color-mix(in oklab, var(--ylyto-pink) 35%, transparent);
 }
 
 .dark {
@@ -140,5 +158,35 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
+
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility bubble-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.08),
+    0 4px 0 rgba(0, 0, 0, 0.04),
+    0 6px 14px rgba(0, 0, 0, 0.10);
+  -webkit-text-stroke: 2px rgba(40, 20, 60, 0.85);
+  paint-order: stroke fill;
+}
+
+@utility blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
 }
