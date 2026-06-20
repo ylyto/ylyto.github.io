@@ -5,11 +5,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/lib/i18n";
 import { BgDecor } from "@/components/BgDecor";
 import logoAsset from "@/assets/ylyto-logo.png.asset.json";
-import p1 from "@/assets/product-1.jpg.asset.json";
-import p2 from "@/assets/product-2.jpg.asset.json";
-import p3 from "@/assets/product-3.jpg.asset.json";
-import p4 from "@/assets/product-4.jpg.asset.json";
-import p5 from "@/assets/product-5.jpg.asset.json";
+import heroImg from "@/assets/images/kids-pink-floral-dress.webp";
+import coralRuffleImg from "@/assets/images/kids-coral-ruffle-dress.webp";
+import yellowSetDoorImg from "@/assets/images/kids-yellow-set-door.webp";
+import coralGardenImg from "@/assets/images/kids-coral-dress-garden.webp";
+import yellowSetPoseImg from "@/assets/images/kids-yellow-set-pose.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,12 +29,18 @@ export const Route = createFileRoute("/")({
 const WHATSAPP = "212600000000";
 
 const products = [
-  { img: p2.url, key: "col_dresses" },
-  { img: p3.url, key: "col_sets" },
-  { img: p4.url, key: "col_summer" },
+  { img: coralRuffleImg, key: "col_dresses", alt: "Robe coral à volants pour fille ylyto" },
+  { img: yellowSetPoseImg, key: "col_sets", alt: "Ensemble jaune fleuri enfant ylyto" },
+  { img: coralGardenImg, key: "col_summer", alt: "Robe d'été coral enfant ylyto" },
 ] as const;
 
-const galleryImgs = [p1.url, p2.url, p3.url, p4.url, p5.url];
+const galleryImgs: { src: string; alt: string }[] = [
+  { src: heroImg, alt: "Petite fille en robe rose à fleurs ylyto" },
+  { src: coralRuffleImg, alt: "Robe coral à volants ylyto" },
+  { src: yellowSetDoorImg, alt: "Ensemble jaune fleuri ylyto" },
+  { src: coralGardenImg, alt: "Robe coral dans le jardin ylyto" },
+  { src: yellowSetPoseImg, alt: "Ensemble jaune pantalon ylyto" },
+];
 
 const leadSchema = z.object({
   name: z.string().trim().min(2).max(80),
@@ -110,7 +116,16 @@ function Hero() {
         <div className="relative">
           <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-ylyto-yellow/40 via-ylyto-pink/30 to-ylyto-blue/40 blur-2xl" />
           <div className="relative rounded-[2.5rem] overflow-hidden ring-4 ring-white shadow-[var(--shadow-soft)] aspect-[4/5] bg-white">
-            <img src={p1.url} alt="ylyto" loading="eager" className="w-full h-full object-cover" />
+            <img
+              src={heroImg}
+              alt="Petite fille en robe rose à fleurs ylyto"
+              width={1024}
+              height={1280}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="absolute -top-4 -right-4 rounded-2xl bg-ylyto-yellow text-foreground px-4 py-2 font-bold rotate-6 shadow-[0_4px_0_rgba(0,0,0,0.12)]">
             ⭐ 100% doux
@@ -136,7 +151,15 @@ function Collections() {
             return (
               <div key={i} className={`group rounded-3xl ${colors[i]} p-3 ring-1 ring-border/60 shadow-[0_8px_0_rgba(0,0,0,0.04)] hover:translate-y-[-4px] transition-transform`}>
                 <div className="rounded-2xl overflow-hidden aspect-[4/5] bg-white">
-                  <img src={p.img} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img
+                    src={p.img}
+                    alt={p.alt}
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-4 text-center">
                   <h3 className="font-display text-2xl font-bold text-foreground">{t(p.key as never)}</h3>
@@ -190,9 +213,17 @@ function Gallery() {
           <p className="text-muted-foreground">{t("gallery_subtitle")}</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-          {galleryImgs.map((src, i) => (
+          {galleryImgs.map((g, i) => (
             <div key={i} className={`rounded-2xl overflow-hidden ring-2 ring-white shadow-md aspect-[4/5] ${i === 0 ? "md:col-span-1 md:row-span-2 lg:row-span-1" : ""}`}>
-              <img src={src} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+              <img
+                src={g.src}
+                alt={g.alt}
+                width={600}
+                height={750}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+              />
             </div>
           ))}
         </div>
