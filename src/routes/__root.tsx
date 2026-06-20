@@ -78,14 +78,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "YLYTO | Vêtements enfants doux et colorés" },
+      { name: "description", content: "YLYTO habille les enfants avec des tenues douces, confortables et colorées. Découvrez des robes et ensembles adorables pour un look joyeux au quotidien." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "YLYTO | Vêtements enfants doux et colorés" },
+      { property: "og:description", content: "YLYTO habille les enfants avec des tenues douces, confortables et colorées. Découvrez des robes et ensembles adorables pour un look joyeux au quotidien." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "YLYTO | Vêtements enfants doux et colorés" },
+      { name: "twitter:description", content: "YLYTO habille les enfants avec des tenues douces, confortables et colorées. Découvrez des robes et ensembles adorables pour un look joyeux au quotidien." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/s5cxj7HE1OMcEVTr6EkrdCqwkHB3/social-images/social-1781961606340-Logo_Ylyto_-_Copie.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/s5cxj7HE1OMcEVTr6EkrdCqwkHB3/social-images/social-1781961606340-Logo_Ylyto_-_Copie.webp" },
     ],
     links: [
       {
