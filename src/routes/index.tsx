@@ -4,7 +4,6 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/lib/i18n";
 import { BgDecor } from "@/components/BgDecor";
-import logoAsset from "@/assets/ylyto-logo.png.asset.json";
 import heroImg from "@/assets/images/kids-pink-floral-dress.webp";
 import coralRuffleImg from "@/assets/images/kids-coral-ruffle-dress.webp";
 import yellowSetDoorImg from "@/assets/images/kids-yellow-set-door.webp";
@@ -19,7 +18,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ylyto — Vêtements enfants" },
       { property: "og:description", content: "Des tenues douces et joyeuses pour des enfants heureux." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: logoAsset.url },
+      { property: "og:image", content: "/favicon.png" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -56,7 +55,7 @@ function Header() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/50">
       <nav className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-2">
-          <img src={logoAsset.url} alt="ylyto" className="h-9 w-auto" />
+          <img src="/ylyto-logo.png" alt="ylyto" className="h-12 md:h-14 w-auto" />
         </a>
         <div className="hidden md:flex items-center gap-6 text-sm font-semibold">
           <a href="#collections" className="hover:text-primary transition-colors">{t("nav_collections")}</a>
@@ -326,7 +325,7 @@ function Footer() {
     <footer className="relative mt-10 border-t border-border/60 bg-ylyto-cream">
       <div className="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-3 gap-8">
         <div className="space-y-3">
-          <img src={logoAsset.url} alt="ylyto" className="h-10 w-auto" />
+          <img src="/ylyto-logo.png" alt="ylyto" className="h-16 w-auto" />
           <p className="text-sm text-muted-foreground max-w-xs">{t("footer_tagline")}</p>
         </div>
         <div className="space-y-2 text-sm">
