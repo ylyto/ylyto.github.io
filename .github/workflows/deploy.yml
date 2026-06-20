@@ -31,7 +31,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Build project
         run: bun run build
@@ -39,34 +39,19 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      - name: Detect build output
+      - name: Verify dist output
         run: |
-          echo "Searching for index.html..."
-          find . -maxdepth 6 -name index.html -type f | sort
-
-          if [ -f ".output/public/index.html" ]; then
-            echo "PUBLISH_DIR=.output/public" >> $GITHUB_ENV
-          elif [ -f "dist/index.html" ]; then
-            echo "PUBLISH_DIR=dist" >> $GITHUB_ENV
-          elif [ -f "dist/client/index.html" ]; then
-            echo "PUBLISH_DIR=dist/client" >> $GITHUB_ENV
-          elif [ -f "build/index.html" ]; then
-            echo "PUBLISH_DIR=build" >> $GITHUB_ENV
-          else
-            echo "No deployable index.html found."
-            echo "Available folders:"
-            find . -maxdepth 4 -type d | sort
-            exit 1
-          fi
+          ls -la
+          ls -la dist
+          test -f dist/index.html
 
       - name: Add SPA fallback
-        run: |
-          cp "${PUBLISH_DIR}/index.html" "${PUBLISH_DIR}/404.html"
+        run: cp dist/index.html dist/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.PUBLISH_DIR }}
+          path: dist
 
   deploy:
     needs: build
